@@ -1,2 +1,65 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿// Задача 60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
+// Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+// Массив размером 2 x 2 x 2
+// 66(0,0,0) 25(0,1,0)
+// 34(1,0,0) 41(1,1,0)
+// 27(0,0,1) 90(0,1,1)
+// 26(1,0,1) 55(1,1,1)
+
+
+
+// ****Разные числа по возврастанию и только для 2х2х2)****:
+Random rnd = new Random();
+Console.WriteLine("Массив размером 2 x 2 x 2:");
+int[,,] arr = new int[2, 2, 2];
+FillArrayRandom(arr);
+PrintCoordinateArr(arr);
+
+void FillArrayRandom(int[,,] arr)    // создаем рандомный трехмерный массив из целых чисел
+{
+    int n = rnd.Next(10, 60);   // 60 - чтобы не выходило за рамки двухзначности при размере 2х2х2
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+            for (int k = 0; k < arr.GetLength(2); k++)
+            {
+                arr[i, j, k] = n;
+                n += rnd.Next(1, 10);    // добавляет больший разбег
+            }
+        }
+    }
+}
+
+
+void PrintCoordinateArr(int[,,] arry)   // печать массива с координатами
+{
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+            for (int k = 0; k < arr.GetLength(2); k++)
+            {
+                Console.Write($"{arry[i, j, k]} ");
+                Console.Write($"({i}, {j}, {k}) \t");
+            }
+            Console.WriteLine();
+        }
+        Console.WriteLine();
+    }
+}
+
+
+
+/*=========================================
+Результат:
+===========================================
+
+Массив размером 2 x 2 x 2:
+35 (0, 0, 0)    42 (0, 0, 1) 
+47 (0, 1, 0)    51 (0, 1, 1) 
+
+60 (1, 0, 0)    65 (1, 0, 1) 
+74 (1, 1, 0)    78 (1, 1, 1) 
+
+===========================================*/
